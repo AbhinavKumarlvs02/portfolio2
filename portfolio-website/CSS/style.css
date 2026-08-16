@@ -1,0 +1,290 @@
+/* --- FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap');
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
+body { 
+    margin: 0;
+    color: #334155; 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+    background-color: #f8fafc;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- ANIMATED TECH BACKGROUND LOOP --- */
+.tech-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+    overflow: hidden;
+}
+
+.grid-pattern {
+    position: absolute;
+    top: -100%; left: 0; right: 0; bottom: -100%;
+    width: 100%; height: 300%;
+    background-image: 
+        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: floatOrb 10s ease-in-out infinite alternate;
+}
+.orb-1 { width: 400px; height: 400px; background: rgba(59, 130, 246, 0.15); top: -10%; left: -10%; }
+.orb-2 { width: 500px; height: 500px; background: rgba(16, 185, 129, 0.1); bottom: -20%; right: -10%; animation-delay: -5s; }
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+}
+
+/* --- EDITORIAL PORTRAIT FRAME --- */
+.portrait-wrapper { position: relative; }
+.portrait-frame {
+    border: 8px solid #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.6);
+    background-color: #ffffff;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portrait-wrapper:hover .portrait-frame { transform: scale(1.02) rotate(1deg); }
+
+/* --- HUGE DOODLE HOVER EFFECT --- */
+.doodle-container {
+    position: absolute;
+    top: -90px; left: 20px; 
+    opacity: 0; pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px) rotate(-5deg);
+    z-index: 20;
+    display: flex; flex-direction: column; align-items: center;
+}
+.portrait-wrapper:hover .doodle-container { opacity: 1; transform: translateY(0) rotate(-10deg); }
+.doodle-text {
+    font-family: 'Caveat', cursive;
+    font-size: 4.5rem; color: #2563eb; line-height: 1;
+    text-shadow: 2px 2px 4px rgba(37, 99, 235, 0.15); margin-bottom: -10px;
+}
+.doodle-arrow { stroke-dasharray: 200; stroke-dashoffset: 200; transition: stroke-dashoffset 0.6s ease-out 0.1s; }
+.portrait-wrapper:hover .doodle-arrow { stroke-dashoffset: 0; }
+
+/* --- TYPEWRITER CURSOR --- */
+.cursor {
+    display: inline-block; width: 4px; height: 1.1em;
+    background-color: #2563eb; vertical-align: middle;
+    animation: blink 1s step-end infinite; margin-left: 6px;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- BRANDED METRICS CARDS --- */
+.metric-card {
+    backdrop-filter: blur(12px);
+    border-radius: 28px; 
+    padding: 40px 32px; 
+    box-shadow: 0 10px 30px -10px rgba(0,0,0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.metric-card:hover {
+    transform: translateY(-8px); 
+}
+
+/* Theme 1: Academic CGPA */
+.card-cgpa {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(199, 210, 254, 0.9);
+}
+.card-cgpa:hover { box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.2); background: rgba(255, 255, 255, 0.95); }
+
+/* Theme 2: CodeChef */
+.card-codechef {
+    background: rgba(245, 240, 235, 0.85);
+    border: 1px solid rgba(215, 204, 192, 0.9);
+}
+.card-codechef:hover { box-shadow: 0 20px 40px -10px rgba(91, 70, 56, 0.2); background: rgba(245, 240, 235, 1); }
+.text-codechef { color: #5B4638; }
+
+/* Theme 3: LeetCode */
+.card-leetcode {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 161, 22, 0.3);
+}
+.card-leetcode:hover { box-shadow: 0 20px 40px -10px rgba(255, 161, 22, 0.3); background: rgba(30, 30, 30, 1); }
+.text-leetcode { color: #FFA116; }
+
+/* --- SCROLL ANIMATION CLASSES (POP-IN EFFECT) --- */
+.reveal {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+    transition: opacity 0.5s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.reveal.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 400ms; }
+
+
+/* --- UPGRADED FUTURISTIC CHAIN & MARQUEE SYSTEM (BOLDER & FLASHIER) --- */
+.chain-section {
+    position: relative;
+    width: 100%;
+    /* Increased top padding to accommodate thicker rail bolt glow */
+    padding: 30px 0 50px 0;
+    overflow: hidden;
+}
+
+/* 1. THICKER Glowing Horizontal Rail & 3. BOLT EFFECT */
+.laser-rail {
+    position: absolute;
+    top: 25px; /* Adjusting for increased section padding */
+    left: 0;
+    width: 100%;
+    height: 10px; /* DRATICALLY INCREASED THICKNESS from 3px */
+    z-index: 0;
+    border-radius: 5px; /* Rounder rail base */
+    overflow: hidden; /* Contain the bolt flash inside the rail */
+}
+
+/* Thicker rail base color themes */
+.rail-blue {
+    background: rgba(59, 130, 246, 0.15); /* Translucent blue base */
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+.rail-emerald {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+.rail-purple {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+/* THE TRAVELLING ENERGY BOLT (Flash effect) */
+.rail-bolt {
+    position: absolute;
+    height: 100%;
+    width: 180px; /* Length of the electrical flash */
+    background: linear-gradient(90deg, transparent, #ffffff, transparent); /* Pure white center */
+    filter: blur(4px); /* Soften the bolt edges */
+    opacity: 0.9;
+    /* Move left-to-right from off-screen to off-screen */
+    animation: boltTravel 4s infinite linear;
+}
+
+/* Stronger color-specific glows triggered by the white bolt passing by */
+.rail-blue .rail-bolt { box-shadow: 0 0 25px #ffffff, 0 0 50px #3b82f6; }
+.rail-emerald .rail-bolt { box-shadow: 0 0 25px #ffffff, 0 0 50px #10b981; }
+.rail-purple .rail-bolt { box-shadow: 0 0 25px #ffffff, 0 0 50px #a855f7; }
+
+/* Animation definition for travelling bolt */
+@keyframes boltTravel {
+    0% { left: -180px; }
+    100% { left: 100%; }
+}
+
+/* The Scrolling Track */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    /* Moves continuously from left to right (-50% to 0) */
+    animation: scrollLeftToRight 35s linear infinite;
+    position: relative;
+    z-index: 10;
+}
+
+/* Pause on Hover (Desktop) or Hold (Mobile) */
+.chain-section:hover .marquee-track,
+.chain-section:active .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLeftToRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* The Hanging Items */
+.hanging-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 36px; /* INCREASED MARGIN from 24px for larger boxes */
+    transition: transform 0.3s ease;
+}
+.hanging-item:hover {
+    transform: translateY(-8px);
+}
+
+/* Thicker Vertical Wire connecting to the rail */
+.wire {
+    width: 3px; /* INCREASED THICKNESS from 2px */
+    height: 35px; /* Slightly longer wire */
+}
+.wire-blue { background: linear-gradient(180deg, #3b82f6, transparent); box-shadow: 0 0 8px #3b82f6; }
+.wire-emerald { background: linear-gradient(180deg, #10b981, transparent); box-shadow: 0 0 8px #10b981; }
+.wire-purple { background: linear-gradient(180deg, #a855f7, transparent); box-shadow: 0 0 8px #a855f7; }
+
+/* The Glassmorphism Icon Box */
+.chain-box {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 24px; /* Slightly rounder */
+    padding: 24px 36px; /* DRASTICALLY INCREASED PADDING from 16x24 */
+    display: flex;
+    align-items: center;
+    gap: 16px; /* INCREASED GAP from 12px for bigger icons */
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; /* Bolder font weight */
+    font-size: 1.125rem; /* Increased font size */
+    cursor: grab;
+    white-space: nowrap; /* Keep skill names on one line */
+}
+.chain-section:active .chain-box {
+    cursor: grabbing;
+}
+
+/* The Icon itself (handled by HTML w-12 / text-4xl mostly) */
+.chain-box img, .chain-box i {
+    flex-shrink: 0;
+}
+
+.box-blue { border: 1px solid rgba(59, 130, 246, 0.4); color: #2563eb; }
+.box-blue:hover { box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.3); background: #ffffff; }
+
+.box-emerald { border: 1px solid rgba(16, 185, 129, 0.4); color: #059669; }
+.box-emerald:hover { box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.3); background: #ffffff; }
+
+.box-purple { border: 1px solid rgba(168, 85, 247, 0.4); color: #9333ea; }
+.box-purple:hover { box-shadow: 0 10px 20px -5px rgba(168, 85, 247, 0.3); background: #ffffff; }
